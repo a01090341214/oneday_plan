@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주말로그 - 서울 근교 1박2일 놀거리 가이드 & 플래너</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0369a1 100%);
+    }
+    .checkbox-strike:checked + label {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.92; transform: scale(1.02); }
+    }
+    .tmap-btn-pulse {
+      animation: pulse-subtle 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+          <i class="fa-solid fa-compass text-xl"></i>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 bg-clip-text text-transparent">주말로그 (WeekendLog)</span>
+          <span class="hidden sm:inline-block text-xs font-semibold px-2 py-0.5 ml-2 bg-blue-50 text-blue-600 rounded-full border border-blue-200">서울 근교 1박2일</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center space-x-2 sm:space-x-4">
+        <a href="#destinations" class="text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg transition-colors">추천 여행지</a>
+        <a href="#checklist-section" class="text-sm font-medium text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg transition-colors">놀거리 체크리스트</a>
+        <a href="#tmap-hub" class="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2 rounded-xl transition-all shadow-sm flex items-center space-x-1.5">
+          <i class="fa-solid fa-location-arrow text-xs"></i>
+          <span>티맵 거리계산</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero-gradient text-white py-14 sm:py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-xs font-medium mb-5">
+          <i class="fa-solid fa-sparkles text-amber-400"></i>
+          <span>이번 주말 어디 가지? 실패 없는 1박 2일 놀거리 완전 정복</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight sm:leading-tight mb-4">
+          가장 완벽한 서울 근교<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-teal-300 to-amber-300">1박 2일 여행 가이드 & 플래너</span>
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed font-normal">
+          티맵(TMAP) 내비게이션 길안내 연동으로 정체 걱정 없이! 왜 가야 하는지 엄선한 핵심 코스부터 
+          1박 2일 동안 빼놓을 수 없는 필수 놀거리 체크리스트까지 한눈에 확인하세요.
+        </p>
+      </div>
+
+      <div id="tmap-hub" class="bg-white/10 backdrop-blur-md border border-white/20 p-5 sm:p-6 rounded-2xl shadow-2xl max-w-4xl">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="w-full md:w-auto flex-1">
+            <label class="block text-xs uppercase tracking-wider font-semibold text-blue-200 mb-2">
+              <i class="fa-solid fa-car-side mr-1.5"></i> 내 출발 지점 선택 (서울 주요 거점)
+            </label>
+            <div class="relative">
+              <select id="originSelect" onchange="calculateAllDistances()" class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl py-3 px-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="gangnam" data-lat="37.4979" data-lng="127.0276">강남역 (서울 동남권/송파·서초 방면)</option>
+                <option value="seoul_station" data-lat="37.5559" data-lng="126.9723">서울역 (도심/중구·용산 방면)</option>
+                <option value="hongdae" data-lat="37.5568" data-lng="126.9237">홍대입구역 (서울 서북권/마포 방면)</option>
+                <option value="jamsil" data-lat="37.5133" data-lng="127.1001">잠실역 (동부권/강동·광진 방면)</option>
+                <option value="yeongdeungpo" data-lat="37.5156" data-lng="126.9076">영등포역 (서남권/구로·양천 방면)</option>
+                <option value="nowon" data-lat="37.6542" data-lng="127.0568">노원역 (동북권/도봉·성북 방면)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+            <div class="bg-slate-900/60 border border-white/10 rounded-xl px-4 py-2.5 text-center flex-1">
+              <span class="text-xs text-slate-300 block">선택 거점 기준</span>
+              <span id="currentOriginLabel" class="text-sm font-bold text-amber-300">강남역 출발</span>
+            </div>
+            <button onclick="applyFastestFilter()" class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-all shadow-lg flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-bolt"></i>
+              <span>가장 가까운 곳 정렬</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-slate-300 gap-2">
+          <div class="flex items-center space-x-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>티맵(TMAP) 스마트 내비게이션 딥링크 연동 지원 (앱 원클릭 실행)</span>
+          </div>
+          <span class="text-slate-400">* 기준 소요시간은 평균 주말 낮 통행 패턴 기반 추정치입니다.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div>
+        <div class="text-xs font-bold text-blue-600 tracking-wider uppercase mb-1">Curated Weekend Getaways</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900" id="destinations">어디로 떠나볼까요? 서울 근교 BEST 6</h2>
+        <p class="text-slate-500 text-sm mt-1">왜 가야 하는지, 무엇을 해야 하는지 명확한 1박 2일 추천 목적지</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex items-center flex-wrap gap-2">
+        <button onclick="filterCategory('all')" class="cat-filter active px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-900 text-white shadow-sm" data-category="all">전체보기</button>
+        <button onclick="filterCategory('activity')" class="cat-filter px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 transition-all" data-category="activity">🔥 익스트림·액티비티</button>
+        <button onclick="filterCategory('nature')" class="cat-filter px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 transition-all" data-category="nature">🌲 자연·힐링·물멍</button>
+        <button onclick="filterCategory('sunset')" class="cat-filter px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 transition-all" data-category="sunset">🌅 서해노을·바다</button>
+        <button onclick="filterCategory('culture')" class="cat-filter px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 transition-all" data-category="culture">🎨 감성예술·카페</button>
+      </div>
+    </div>
+
+    <div id="destinationsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Destination cards injected dynamically via JavaScript -->
+    </div>
+
+    <section id="checklist-section" class="mt-20 pt-10 border-t border-slate-200">
+      <div class="bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-3xl mb-8">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 rounded-full text-xs font-semibold mb-3">
+            <i class="fa-solid fa-list-check text-amber-400"></i>
+            <span>1박 2일 필수 체크리스트 & 플래너</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">여행의 즐거움을 200% 만드는 놀거리 체크리스트</h3>
+          <p class="text-slate-300 text-sm mt-2">
+            단순히 잠만 자고 오는 여행은 그만! 1박 2일 동안 놓치지 말아야 할 필수 액티비티와 꿀잼 미션을 체크하고 완료해보세요.
+          </p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-white/10 rounded-2xl p-4 sm:p-5 mb-8 border border-white/15 backdrop-blur-sm">
+          <div class="flex items-center justify-between text-xs sm:text-sm mb-2 font-medium">
+            <span class="text-slate-200"><i class="fa-solid fa-flag-checkered text-amber-400 mr-2"></i>1박 2일 놀거리 달성률</span>
+            <span id="progressText" class="font-bold text-amber-300 text-base">0 / 12 (0%)</span>
+          </div>
+          <div class="w-full bg-slate-800/80 rounded-full h-3 overflow-hidden p-0.5 border border-white/10">
+            <div id="checklistProgressBar" class="bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-300 h-full rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+          </div>
+          <div id="progressMessage" class="text-xs text-slate-300 mt-2 text-right font-light">
+            아직 체크된 놀거리가 없어요. 신나는 주말 계획을 세워보세요!
+          </div>
+        </div>
+
+        <!-- Tabs for checklist: Day 1, Night BBQ, Day 2, Supplies -->
+        <div class="flex border-b border-white/15 space-x-2 sm:space-x-6 mb-6 overflow-x-auto custom-scrollbar pb-1">
+          <button onclick="switchChecklistTab('day1')" class="check-tab active text-sm font-semibold pb-3 border-b-2 border-amber-400 text-amber-300 whitespace-nowrap" data-tab="day1">
+            <i class="fa-solid fa-sun mr-1.5"></i> 1일차 낮 놀거리
+          </button>
+          <button onclick="switchChecklistTab('night')" class="check-tab text-sm font-semibold pb-3 border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap" data-tab="night">
+            <i class="fa-solid fa-fire mr-1.5"></i> 저녁 BBQ & 불멍 밤놀이
+          </button>
+          <button onclick="switchChecklistTab('day2')" class="check-tab text-sm font-semibold pb-3 border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap" data-tab="day2">
+            <i class="fa-solid fa-mug-hot mr-1.5"></i> 2일차 힐링 & 복귀
+          </button>
+          <button onclick="switchChecklistTab('supplies')" class="check-tab text-sm font-semibold pb-3 border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap" data-tab="supplies">
+            <i class="fa-solid fa-suitcase-rolling mr-1.5"></i> 1박2일 꿀템 준비물
+          </button>
+        </div>
+
+        <!-- Checklist Items Container -->
+        <div id="checklistItemsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+          <!-- Dynamically populated checklist -->
+        </div>
+
+        <!-- Add Custom Checklist Item -->
+        <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center">
+          <div class="relative w-full">
+            <input type="text" id="customCheckInput" placeholder="우리만의 특별한 놀거리를 추가해보세요 (예: 보드게임 뱅 챙기기, 밤 산책 별자리 찾기)" class="w-full bg-white/10 border border-white/20 text-white placeholder-slate-400 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+          </div>
+          <button onclick="addCustomChecklistItem()" class="w-full sm:w-auto whitespace-nowrap bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold px-6 py-3 rounded-xl transition-all shadow-md text-sm flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-plus"></i>
+            <span>놀거리 추가</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-route"></i>
+        </div>
+        <h4 class="text-base font-bold text-slate-900 mb-2">티맵(TMAP) 스마트 연동 팁</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          목적지 카드의 'TMAP 길안내' 버튼을 누르면 스마트폰에 설치된 티맵 앱이 즉시 실행되어 실시간 빠른길로 안내합니다. PC 웹에서는 공식 안내 및 지도 상세 좌표를 확인하실 수 있습니다.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <h4 class="text-base font-bold text-slate-900 mb-2">출발 골든타임 가이드</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          토요일 오전 8시 전 출발 혹은 오전 11시 30분 이후 출발 시 서울 도심 탈출 시간을 최대 50분 단축할 수 있습니다. 일요일 귀경 시에는 오후 3시 이전 또는 저녁 8시 이후를 추천합니다.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4">
+          <i class="fa-solid fa-drumstick-bite"></i>
+        </div>
+        <h4 class="text-base font-bold text-slate-900 mb-2">1박 2일 식도락 & 장보기</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          펜션 인근 대형 마트(가평 조종천 인근 마트, 포천 이마트 등)를 활용하면 고기와 지역 특산 주류(가평 잣막걸리, 포천 이동막걸리)를 신선하게 구매하고 픽업 혜택도 누릴 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="detailModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl border border-slate-100 transform transition-all p-6 sm:p-8 relative">
+      <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div id="modalContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toastMessage" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-3 pointer-events-none">
+    <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toastText" class="text-sm font-medium">안내 메시지입니다.</span>
+  </div>
+
+  <footer class="bg-white border-t border-slate-200 py-8 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-compass text-blue-600 text-base"></i>
+        <span class="font-bold text-slate-700">주말로그 (WeekendLog)</span>
+        <span>• 1박 2일 서울 근교 놀거리 & 티맵 내비게이션 플래너</span>
+      </div>
+      <div>
+        <span>TMAP Open DeepLink Integration • 즐겁고 안전한 주말 드라이브 되세요!</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 서울 주요 출발지 좌표 데이터
+    const ORIGINS = {
+      gangnam: { name: '강남역', lat: 37.4979, lng: 127.0276 },
+      seoul_station: { name: '서울역', lat: 37.5559, lng: 126.9723 },
+      hongdae: { name: '홍대입구역', lat: 37.5568, lng: 126.9237 },
+      jamsil: { name: '잠실역', lat: 37.5133, lng: 127.1001 },
+      yeongdeungpo: { name: '영등포역', lat: 37.5156, lng: 126.9076 },
+      nowon: { name: '노원역', lat: 37.6542, lng: 127.0568 }
+    };
+
+    // 서울 근교 1박 2일 핵심 여행지 데이터베이스
+    const DESTINATIONS = [
+      {
+        id: 'gapyeong_chuncheon',
+        title: '가평 & 춘천 청평호 라인',
+        tagline: '수상 액티비티, 레일바이크, 숲속 바비큐 풀코스',
+        category: 'activity',
+        categoryLabel: '🔥 레포츠·액티비티',
+        bgGradient: 'from-blue-600 to-cyan-500',
+        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+        lat: 37.8228,
+        lng: 127.5255,
+        targetSpot: '가평 자라섬 & 청평호',
+        whyGo: [
+          '북한강변을 가르는 짜릿한 수상레저(빠지)와 김유정 레일바이크',
+          '청평호수 뷰를 바라보며 즐기는 프라이빗 풀빌라 & 글램핑 바비큐',
+          '숯불 닭갈비와 막국수로 이어지는 완벽한 1박 2일 먹방 코스'
+        ],
+        itinerary: {
+          day1: [
+            '10:30 가평 도착 & 북한강 뷰 카페에서 커피 한잔',
+            '12:00 가평 명물 숯불 닭갈비 & 막국수 점심',
+            '14:00 김유정 레일바이크 or 청평호 수상 레포츠 체험',
+            '17:00 펜션/글램핑 체크인 & 지역 마트 장보기',
+            '19:00 야외 숯불 BBQ 파티 & 빔프로젝터 영화 감상'
+          ],
+          day2: [
+            '10:00 느긋한 브런치 & 체크아웃',
+            '11:30 자라섬 남도 꽃길 산책 or 남이섬 메타세쿼이아길',
+            '14:00 춘천 구봉산 전망대 카페거리에서 여유 즐긴 후 귀경'
+          ]
+        },
+        highlights: ['자라섬', '김유정 레일바이크', '청평호', '숯불닭갈비']
+      },
+      {
+        id: 'ganghwa_incheon',
+        title: '강화도 & 영종도 오션라인',
+        tagline: '황금빛 서해 일몰, 씨사이드 루지, 싱싱한 조개구이',
+        category: 'sunset',
+        categoryLabel: '🌅 서해노을·바다',
+        bgGradient: 'from-amber-500 to-rose-500',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        lat: 37.7465,
+        lng: 126.4880,
+        targetSpot: '강화 씨사이드리조트 루지',
+        whyGo: [
+          '동양 최대 길이(1.8km)의 스릴 넘치는 강화 씨사이드 메가루지',
+          '붉게 물드는 서해 바다 낙조를 감상하며 먹는 푸짐한 조개구이와 칼국수',
+          '유서 깊은 전등사와 레트로한 조양방직 카페에서 남기는 인생샷'
+        ],
+        itinerary: {
+          day1: [
+            '11:00 강화도 도착 & 꽃게탕/간장게장 든든한 점심',
+            '13:30 강화 씨사이드리조트 루지 2회 탑승 (짜릿한 레이싱)',
+            '16:00 동막해변 갯벌 산책 및 해안도로 드라이브',
+            '18:00 서해 낙조 감상하며 숯불 조개구이 & 바베큐',
+            '20:30 불꽃놀이 & 파도 소리 들으며 글램핑/오션뷰 숙소 휴식'
+          ],
+          day2: [
+            '10:30 전등사 고즈넉한 숲길 산책',
+            '12:30 강화 방직공장을 개조한 초대형 레트로 카페 조양방직 방문',
+            '15:00 강화 특산품(순무김치, 인삼) 구경 후 여유롭게 복귀'
+          ]
+        },
+        highlights: ['강화 메가루지', '동막해변 낙조', '조양방직', '조개구이']
+      },
+      {
+        id: 'pocheon_yeoncheon',
+        title: '포천 아트밸리 & 한탄강',
+        tagline: '신비로운 에메랄드 천주호, 이동갈비, 유네스코 지질공원',
+        category: 'nature',
+        categoryLabel: '🌲 자연·힐링·지질',
+        bgGradient: 'from-emerald-600 to-teal-700',
+        image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
+        lat: 37.9256,
+        lng: 127.2343,
+        targetSpot: '포천 아트밸리',
+        whyGo: [
+          '버려진 폐채석장이 드라마 촬영지로 변신한 신비의 화강암 호수 천주호',
+          '한탄강 유네스코 세계지질공원의 웅장한 하늘다리와 비둘기낭 폭포',
+          '입안에서 살살 녹는 원조 포천 이동갈비와 시원한 포천 이동막걸리 페어링'
+        ],
+        itinerary: {
+          day1: [
+            '11:00 포천 이동갈비 골목에서 달콤한 양념갈비 만찬',
+            '13:30 포천 아트밸리 모노레일 탑승 & 천주호 관람',
+            '16:00 한탄강 하늘다리 건너며 주상절리 협곡 감상',
+            '18:00 산정호수 인근 숲속 펜션 체크인 & 힐링 바베큐',
+            '21:00 맑은 밤하늘 은하수 관측 & 따뜻한 불멍 타임'
+          ],
+          day2: [
+            '10:00 산정호수 둘레길 산책 & 오리배 타기',
+            '12:30 비둘기낭 폭포 천연기념물 둘러보기',
+            '14:00 고모리 저수지 한옥 감성 카페에서 휴식 후 귀경'
+          ]
+        },
+        highlights: ['포천 아트밸리', '한탄강 하늘다리', '포천이동갈비', '산정호수']
+      },
+      {
+        id: 'yangpyeong_namyangju',
+        title: '양평 & 남양주 북한강 물안개',
+        tagline: '두물머리 연핫도그, 카누 투어, 감성 드라이브 코스',
+        category: 'culture',
+        categoryLabel: '🎨 감성예술·카페',
+        bgGradient: 'from-indigo-600 to-purple-600',
+        image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80',
+        lat: 37.5332,
+        lng: 127.3175,
+        targetSpot: '양평 두물머리',
+        whyGo: [
+          '남한강과 북한강이 만나는 두물머리의 물안개 풍경과 시그니처 연핫도그',
+          '강변을 따라 즐비한 북한강 리버뷰 테라스 카페와 수목원 산책',
+          '수도권에서 가장 가까워 교통 피로 없이 누리는 여유로운 1박 2일'
+        ],
+        itinerary: {
+          day1: [
+            '11:00 양평 도착 & 두물머리 산책 및 즉석 연핫도그 간식',
+            '13:00 세미원 연꽃 테마 정원 힐링 걷기',
+            '15:00 북한강변 대형 리버뷰 베이커리 카페 휴식',
+            '17:30 마운틴뷰 독채 감성 숙소 입실 & 테라스 바비큐',
+            '20:30 보드게임 & 감성 조명 아래 와인 한잔'
+          ],
+          day2: [
+            '10:30 용문산 관광단지 피톤치드 숲길 걷기',
+            '12:30 양평 5일장 먹거리 or 능이버섯 전골 든든한 점심',
+            '14:30 구둔역(폐역)에서 감성 필름 사진 촬영 후 복귀'
+          ]
+        },
+        highlights: ['두물머리 연핫도그', '세미원', '용문산', '북한강카페']
+      },
+      {
+        id: 'paju_heyri',
+        title: '파주 헤이리 & 마장호수',
+        tagline: '아찔한 출렁다리, 건축 예술마을, 출판도시 감성 서점',
+        category: 'culture',
+        categoryLabel: '🎨 감성예술·카페',
+        bgGradient: 'from-violet-600 to-fuchsia-600',
+        image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+        lat: 37.7940,
+        lng: 126.7020,
+        targetSpot: '파주 마장호수 출렁다리',
+        whyGo: [
+          '호수 위를 걷는 220m 길이의 스릴 넘치는 마장호수 흔들다리와 카누',
+          '개성 있는 갤러리와 공방, 감각적인 카페가 모여있는 헤이리 예술마을',
+          '지혜의 숲 등 밤에도 책과 함께 머물 수 있는 고즈넉한 북캉스'
+        ],
+        itinerary: {
+          day1: [
+            '10:30 파주 마장호수 출렁다리 산책 & 호수 뷰 전망대',
+            '12:30 파주 특산물 장단콩 요리(두부정식) 건강한 식사',
+            '14:30 헤이리 예술마을 도자기/향수 만들기 원데이 클래스',
+            '17:30 헤이리 인근 독채 펜션 체크인 & 가든 바비큐 파티',
+            '20:30 프로방스 마을 야간 빛 축제 야경 드라이브'
+          ],
+          day2: [
+            '10:30 파주 출판도시 지혜의 숲 방문 & 독서와 커피',
+            '13:00 롯데/신세계 파주 프리미엄 아울렛 쇼핑 및 점심',
+            '16:00 평화누리공원 바람개비 언덕 산책 후 서울 복귀'
+          ]
+        },
+        highlights: ['마장호수 출렁다리', '헤이리마을', '지혜의숲', '장단콩두부']
+      },
+      {
+        id: 'daebu_jebu',
+        title: '대부도 & 제부도 바닷길',
+        tagline: '신비의 바닷길 열림, 해상 케이블카, 방아머리 조개구이',
+        category: 'sunset',
+        categoryLabel: '🌅 서해노을·바다',
+        bgGradient: 'from-sky-600 to-blue-700',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        lat: 37.1950,
+        lng: 126.6210,
+        targetSpot: '제부도 서해랑 케이블카',
+        whyGo: [
+          '하루 두 번 열리는 모세의 기적 제부도 바닷길과 바다 위를 가르는 서해랑 케이블카',
+          '시화나래 조력전망대 75m 상공 투명 유리바닥에서 내려다보는 아찔한 서해바다',
+          '방아머리 해변에서 즐기는 바다 뷰 캠크닉과 해물 듬뿍 바지락 칼국수'
+        ],
+        itinerary: {
+          day1: [
+            '11:00 시화나래휴게소 달전망대 스카이워크 감상',
+            '12:30 방아머리 해수욕장 바지락 칼국수 & 파전 점심',
+            '14:30 서해랑 해상 케이블카 탑승 (전곡항 ⇄ 제부도 왕복)',
+            '17:00 제부도 탑재규 산책로 & 빨간 등대 일몰 사진',
+            '19:00 숙소 입실 & 숯불 조개구이 + 새우구이 바비큐 파티'
+          ],
+          day2: [
+            '10:00 대부바다향기테마파크 전동바이크 체험',
+            '12:30 유리섬박물관 관람 or 바다 전망 카페 투어',
+            '14:30 대부도 포도 와이너리 기념품 구경 후 복귀'
+          ]
+        },
+        highlights: ['서해랑 케이블카', '시화나래 전망대', '제부도 바닷길', '바지락칼국수']
+      }
+    ];
+
+    // 1박 2일 놀거리 체크리스트 데이터베이스
+    const DEFAULT_CHECKLIST = {
+      day1: [
+        { id: 'c1', text: '출발 전 티맵(TMAP) 추천 경로 확인하고 정체 구간 피하기', tag: '필수', checked: true },
+        { id: 'c2', text: '지역 로컬 시그니처 맛집(닭갈비, 게장, 칼국수 등) 먹방 성공하기', tag: '맛집', checked: false },
+        { id: 'c3', text: '스릴 만점 대표 액티비티 1개 즐기기 (루지/레일바이크/출렁다리/케이블카)', tag: '놀거리', checked: false },
+        { id: 'c4', text: '오션뷰 or 리버뷰 대형 테라스 카페에서 시그니처 음료 마시기', tag: '카페', checked: false },
+        { id: 'c5', text: '숙소 가기 전 하나로마트에서 지역 특산 막걸리 & 숯불 고기 장보기', tag: '장보기', checked: false }
+      ],
+      night: [
+        { id: 'c6', text: '야외 숯불 그릴에 두툼한 삼겹살/목살 & 꼬치 완벽하게 굽기', tag: 'BBQ', checked: false },
+        { id: 'c7', text: '모닥불 불멍하며 오로라 가루 뿌리고 마시멜로 구워먹기', tag: '낭만', checked: false },
+        { id: 'c8', text: '친구/연인/가족과 함께하는 꿀잼 보드게임 대결 (할리갈리/루미큐브)', tag: '놀거리', checked: false },
+        { id: 'c9', text: '미니 빔프로젝터로 감성 영화 보며 야식 라면 끓이기', tag: '야식', checked: false }
+      ],
+      day2: [
+        { id: 'c10', text: '맑은 아침 공기 마시며 피톤치드 산책길 or 물멍 산책하기', tag: '힐링', checked: false },
+        { id: 'c11', text: '감성 브런치 또는 시원한 해장국으로 든든한 2일차 시작', tag: '맛집', checked: false },
+        { id: 'c12', text: '레트로 명소나 온실 정원에서 단체/인생 사진 10장 이상 남기기', tag: '포토', checked: false },
+        { id: 'c13', text: '귀경길 정체 피해서 티맵 실시간 빠른길로 안전하게 복귀', tag: '복귀', checked: false }
+      ],
+      supplies: [
+        { id: 's1', text: '블루투스 스피커 & 감성 조명/랜턴', tag: '준비물', checked: true },
+        { id: 's2', text: '보조배터리 및 고속 차량용 충전기', tag: '필수', checked: true },
+        { id: 's3', text: '물티슈, 키친타월, 지퍼백 (바베큐 필수템)', tag: '필수', checked: false },
+        { id: 's4', text: '보드게임 및 카드 세트', tag: '놀거리', checked: false },
+        { id: 's5', text: '비상 상비약 (소화제, 두통약, 밴드, 모기기피제)', tag: '안전', checked: false }
+      ]
+    };
+
+    let currentChecklist = JSON.parse(localStorage.getItem('weekendlog_checklist')) || DEFAULT_CHECKLIST;
+    let currentTab = 'day1';
+    let currentCategory = 'all';
+
+    // 하버사인 공식(Haversine) 기반 직선거리 및 실 도로 주말 가중치(1.35x) 계산
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // 지구 반경 km
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      const directKm = R * c;
+      const roadKm = Math.round(directKm * 1.35); // 도로 굴곡 보정
+      return roadKm;
+    }
+
+    // 주말 서울 근교 평균 주행속도 (약 45~55km/h 기준) 소요시간 추정
+    function estimateTime(km) {
+      const avgSpeed = 48; // km/h
+      const totalMinutes = Math.round((km / avgSpeed) * 60);
+      const hours = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+      if (hours > 0) {
+        return `${hours}시간 ${mins}분`;
+      }
+      return `${mins}분`;
+    }
+
+    function launchTmap(spotName, lat, lng) {
+      const encodedName = encodeURIComponent(spotName);
+      
+      // TMAP App Scheme
+      // tmap://route?rGoName={name}&rGoX={lng}&rGoY={lat}
+      const tmapAppUrl = `tmap://route?rGoName=${encodedName}&rGoX=${lng}&rGoY=${lat}`;
+      const tmapWebSearchUrl = `https://smap.tmap.co.kr/search?name=${encodedName}`;
+
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      showToast(`티맵(TMAP) 내비게이션으로 연결합니다: ${spotName}`);
+
+      if (isMobile) {
+        // 모바일 기기일 때 티맵 앱 실행 시도, 미설치 시 티맵 포털/스토어로 대응
+        const start = Date.now();
+        window.location.href = tmapAppUrl;
+        
+        setTimeout(() => {
+          if (Date.now() - start < 1800) {
+            // 앱이 열리지 않은 경우 대체 웹 안내
+            window.open(tmapWebSearchUrl, '_blank');
+          }
+        }, 1500);
+      } else {
+        // 데스크탑 환경일 경우 새 창으로 티맵 길안내 정보 팝업
+        const opened = window.open(`https://map.kakao.com/link/to/${encodedName},${lat},${lng}`, '_blank');
+        if (!opened) {
+          showToast('팝업 차단을 해제하시면 길안내 창이 열립니다.', 'info');
+        }
+      }
+    }
+
+    function renderDestinations() {
+      const grid = document.getElementById('destinationsGrid');
+      const originKey = document.getElementById('originSelect').value;
+      const origin = ORIGINS[originKey];
+
+      // 필터링 적용
+      let filtered = DESTINATIONS;
+      if (currentCategory !== 'all') {
+        filtered = DESTINATIONS.filter(item => item.category === currentCategory);
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const km = calculateDistance(origin.lat, origin.lng, item.lat, item.lng);
+        const duration = estimateTime(km);
+
+        return `
+          <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+            <div class="relative h-48 sm:h-52 overflow-hidden">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+              
+              <div class="absolute top-3 left-3">
+                <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-slate-900/70 backdrop-blur-md border border-white/20">
+                  ${item.categoryLabel}
+                </span>
+              </div>
+
+              <!-- Distance Badge -->
+              <div class="absolute top-3 right-3 bg-amber-400 text-slate-950 px-2.5 py-1 rounded-xl text-xs font-extrabold shadow flex items-center space-x-1">
+                <i class="fa-solid fa-car text-[10px]"></i>
+                <span>약 ${km}km (${duration})</span>
+              </div>
+
+              <div class="absolute bottom-3 left-4 right-4 text-white">
+                <h3 class="text-xl font-bold leading-tight drop-shadow-sm">${item.title}</h3>
+                <p class="text-xs text-slate-200 line-clamp-1 mt-0.5">${item.tagline}</p>
+              </div>
+            </div>
+
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <!-- Why Go Reasons -->
+                <div class="mb-4">
+                  <span class="text-xs font-bold text-slate-700 uppercase tracking-wide block mb-2">
+                    <i class="fa-solid fa-heart text-rose-500 mr-1"></i> 왜 가야 할까요?
+                  </span>
+                  <ul class="space-y-1.5 text-xs text-slate-600">
+                    ${item.whyGo.map(reason => `
+                      <li class="flex items-start">
+                        <i class="fa-solid fa-check text-blue-500 mr-1.5 mt-0.5 text-[10px]"></i>
+                        <span>${reason}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+
+                <!-- Highlights tags -->
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  ${item.highlights.map(h => `
+                    <span class="text-[11px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">#${h}</span>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2">
+                <button onclick="openModal('${item.id}')" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-slate-900 font-semibold text-xs transition-colors flex items-center justify-center space-x-1.5">
+                  <i class="fa-solid fa-calendar-days text-slate-500"></i>
+                  <span>1박2일 코스</span>
+                </button>
+                <button onclick="launchTmap('${item.targetSpot}', ${item.lat}, ${item.lng})" class="tmap-btn-pulse w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs transition-all shadow-md shadow-blue-500/20 flex items-center justify-center space-x-1.5">
+                  <i class="fa-solid fa-location-arrow"></i>
+                  <span>TMAP 길안내</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function calculateAllDistances() {
+      const originKey = document.getElementById('originSelect').value;
+      const origin = ORIGINS[originKey];
+      document.getElementById('currentOriginLabel').innerText = `${origin.name} 출발`;
+      renderDestinations();
+      showToast(`${origin.name} 기준으로 거리 및 이동시간이 갱신되었습니다.`);
+    }
+
+    function applyFastestFilter() {
+      const originKey = document.getElementById('originSelect').value;
+      const origin = ORIGINS[originKey];
+
+      DESTINATIONS.sort((a, b) => {
+        const distA = calculateDistance(origin.lat, origin.lng, a.lat, a.lng);
+        const distB = calculateDistance(origin.lat, origin.lng, b.lat, b.lng);
+        return distA - distB;
+      });
+
+      renderDestinations();
+      showToast(`${origin.name}에서 가장 가까운 여행지 순으로 정렬했습니다!`, 'success');
+      
+      const destEl = document.getElementById('destinations');
+      destEl.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-filter').forEach(btn => {
+        if (btn.getAttribute('data-category') === cat) {
+          btn.className = "cat-filter active px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-900 text-white shadow-sm";
+        } else {
+          btn.className = "cat-filter px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 transition-all";
+        }
+      });
+      renderDestinations();
+    }
+
+    function renderChecklist() {
+      const container = document.getElementById('checklistItemsContainer');
+      const items = currentChecklist[currentTab] || [];
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-8 text-center text-slate-400 text-sm">
+            등록된 놀거리가 없습니다. 아래 입력창에서 나만의 놀거리를 추가해보세요!
+          </div>
+        `;
+        updateProgress();
+        return;
+      }
+
+      container.innerHTML = items.map((item, idx) => `
+        <div class="bg-white/10 hover:bg-white/15 border border-white/10 rounded-2xl p-3.5 flex items-center justify-between transition-colors">
+          <div class="flex items-center space-x-3 flex-1 pr-2">
+            <input 
+              type="checkbox" 
+              id="chk_${currentTab}_${idx}" 
+              ${item.checked ? 'checked' : ''} 
+              onchange="toggleCheckItem('${currentTab}', ${idx})"
+              class="checkbox-strike w-5 h-5 rounded-lg border-white/30 text-amber-400 focus:ring-amber-400 bg-slate-900/60 cursor-pointer accent-amber-400">
+            <label for="chk_${currentTab}_${idx}" class="text-sm text-slate-100 cursor-pointer select-none leading-snug">
+              <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-white/10 text-amber-300 mr-1.5">${item.tag}</span>
+              ${item.text}
+            </label>
+          </div>
+          <button onclick="deleteCheckItem('${currentTab}', ${idx})" class="text-slate-400 hover:text-rose-400 p-1.5 text-xs transition-colors" title="삭제">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      `).join('');
+
+      updateProgress();
+    }
+
+    function switchChecklistTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.check-tab').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tab) {
+          btn.className = "check-tab active text-sm font-semibold pb-3 border-b-2 border-amber-400 text-amber-300 whitespace-nowrap";
+        } else {
+          btn.className = "check-tab text-sm font-semibold pb-3 border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap";
+        }
+      });
+      renderChecklist();
+    }
+
+    function toggleCheckItem(tab, idx) {
+      currentChecklist[tab][idx].checked = !currentChecklist[tab][idx].checked;
+      saveChecklist();
+      renderChecklist();
+    }
+
+    function deleteCheckItem(tab, idx) {
+      currentChecklist[tab].splice(idx, 1);
+      saveChecklist();
+      renderChecklist();
+      showToast('체크리스트 항목이 삭제되었습니다.');
+    }
+
+    function addCustomChecklistItem() {
+      const input = document.getElementById('customCheckInput');
+      const val = input.value.trim();
+      if (!val) {
+        showToast('놀거리 내용을 입력해주세요!', 'warn');
+        return;
+      }
+
+      if (!currentChecklist[currentTab]) {
+        currentChecklist[currentTab] = [];
+      }
+
+      currentChecklist[currentTab].push({
+        id: 'custom_' + Date.now(),
+        text: val,
+        tag: 'My놀거리',
+        checked: false
+      });
+
+      input.value = '';
+      saveChecklist();
+      renderChecklist();
+      showToast('나만의 놀거리가 체크리스트에 추가되었습니다!', 'success');
+    }
+
+    function saveChecklist() {
+      localStorage.setItem('weekendlog_checklist', JSON.stringify(currentChecklist));
+    }
+
+    function updateProgress() {
+      let total = 0;
+      let completed = 0;
+
+      Object.keys(currentChecklist).forEach(key => {
+        currentChecklist[key].forEach(item => {
+          total++;
+          if (item.checked) completed++;
+        });
+      });
+
+      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+      document.getElementById('checklistProgressBar').style.width = `${percent}%`;
+      document.getElementById('progressText').innerText = `${completed} / ${total} (${percent}%)`;
+
+      const msgEl = document.getElementById('progressMessage');
+      if (percent === 100) {
+        msgEl.innerText = '🎉 완벽합니다! 1박 2일 레전드 여행을 즐길 준비가 모두 끝났습니다!';
+      } else if (percent >= 60) {
+        msgEl.innerText = '🚀 신나는 여행 계획이 착착 완성되어 가고 있어요!';
+      } else if (percent > 0) {
+        msgEl.innerText = '💡 차근차근 놀거리들을 체크하며 기대감을 높여보세요!';
+      } else {
+        msgEl.innerText = '아직 체크된 놀거리가 없어요. 신나는 주말 계획을 세워보세요!';
+      }
+    }
+
+    function openModal(destId) {
+      const item = DESTINATIONS.find(d => d.id === destId);
+      if (!item) return;
+
+      const originKey = document.getElementById('originSelect').value;
+      const origin = ORIGINS[originKey];
+      const km = calculateDistance(origin.lat, origin.lng, item.lat, item.lng);
+      const duration = estimateTime(km);
+
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `
+        <div class="mb-5">
+          <span class="inline-block text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200 mb-2">
+            ${item.categoryLabel}
+          </span>
+          <h3 class="text-2xl font-bold text-slate-900">${item.title} 1박 2일 완성 코스</h3>
+          <p class="text-sm text-slate-500 mt-1">${item.tagline}</p>
+        </div>
+
+        <!-- Distance & TMAP Bar -->
+        <div class="bg-slate-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 mb-6">
+          <div class="flex items-center space-x-3 text-sm">
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div>
+              <span class="font-bold text-slate-800">${origin.name} 기준 : 약 ${km}km</span>
+              <span class="block text-xs text-slate-500">예상 소요시간 약 ${duration} (목표: ${item.targetSpot})</span>
+            </div>
+          </div>
+          <button onclick="launchTmap('${item.targetSpot}', ${item.lat}, ${item.lng})" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-diamond-turn-right"></i>
+            <span>티맵으로 목적지 즉시 안내</span>
+          </button>
+        </div>
+
+        <!-- Timeline 1박 2일 상세 일정 -->
+        <div class="space-y-6 mb-6">
+          <div>
+            <h4 class="text-sm font-extrabold text-blue-600 uppercase tracking-wider flex items-center mb-3">
+              <i class="fa-solid fa-calendar-day mr-2"></i> Day 1 : 활기찬 액티비티 & 낭만 바비큐
+            </h4>
+            <div class="space-y-2 border-l-2 border-blue-200 pl-4 ml-2">
+              ${item.itinerary.day1.map(step => `
+                <div class="text-xs text-slate-700 relative">
+                  <span class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-blue-500"></span>
+                  <span class="font-medium text-slate-900">${step.split(' ')[0]}</span>
+                  <span>${step.substring(step.indexOf(' '))}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-extrabold text-teal-600 uppercase tracking-wider flex items-center mb-3">
+              <i class="fa-solid fa-calendar-plus mr-2"></i> Day 2 : 감성 힐링 산책 & 여유로운 복귀
+            </h4>
+            <div class="space-y-2 border-l-2 border-teal-200 pl-4 ml-2">
+              ${item.itinerary.day2.map(step => `
+                <div class="text-xs text-slate-700 relative">
+                  <span class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-teal-500"></span>
+                  <span class="font-medium text-slate-900">${step.split(' ')[0]}</span>
+                  <span>${step.substring(step.indexOf(' '))}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- Special Highlights & Tips -->
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-900">
+          <div class="font-bold flex items-center mb-1">
+            <i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i> 여행 플래너의 추천 꿀팁
+          </div>
+          ${item.whyGo.join(' ')} 출발 전 펜션 바비큐 시간(보통 18:00~20:00 마감)을 사전에 확인해두면 여유로운 저녁 시간을 보낼 수 있습니다.
+        </div>
+      `;
+
+      document.getElementById('detailModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detailModal').classList.add('hidden');
+    }
+
+    // Modal background click close
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+      if (e.target.id === 'detailModal') {
+        closeModal();
+      }
+    });
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toastMessage');
+      const toastText = document.getElementById('toastText');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastText.innerText = message;
+
+      if (type === 'warn') {
+        toastIcon.className = "fa-solid fa-triangle-exclamation text-amber-400";
+      } else if (type === 'info') {
+        toastIcon.className = "fa-solid fa-circle-info text-blue-400";
+      } else {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      }
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2600);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDestinations();
+      renderChecklist();
+
+      // Enter key for adding custom checklist item
+      document.getElementById('customCheckInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          addCustomChecklistItem();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+```
